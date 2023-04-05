@@ -1,39 +1,49 @@
-# is-canonical-base64
+# is-canonical-butt64
 
-a regular expression to test wether a string is a valid base64,
-without ambiguity.
+Based on [is-canonical-base64] but modified to generate regular
+expressions for url-safe base64, as described in [ssb-uri spec] :
 
-Base64 encodes bytes (base 256, 8 bits each) as chars each representing
-6 bits. That means a one byte buffer necessarily becomes 2 chars,
-except only the top 2 bits of the last char are used (and the string
-is then padded with an `==` to take the spaces those chars would be)
+> URI-safe Base64 is equivalent to Base64 where + characters are replaced with -, and / characters are replaced with _.
 
-It's _recommended_ that implementations encode zeros here, but many
-implementations (including node.js's) accept non-zeros here, but just
-ignore them.
 
-This can be a problem for _signed data_, because if the signature
-signs base64, you must retain exactly the encoded representation
-(including any ambiguity). So, it's good to enforce that ambigious
-representations are rejected.
-
-## usage
-
-simple
+## Example Usage
 
 ```
-var isCanonicalBase64 = require('canonical-base64')() //note, returns a function
-isCanonicalBase64.test(string)
+const isCanonicalButt64 = require('is-canonical-butt64')
+
+const regex = isCanonicalButt64('ssb:feed/classic/, null, 32)
+
+regest.test('ssb:feed/classic/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=')
+// => true
 ```
 
-advanced: you may pass in a prefix and suffix, which is combined into the regular expression.
 
-```
-var isCanonicalBase64 = require('canonical-base64')('@', '(?:\.ed25519)')
-isCanonicalBase64.test(string)
-```
+
+## API
+
+### isCanonicalButt64(prefix, suffix, length) => RegExp
+
+All arguments are optional
+- `prefix` *String* or *Pattern* to require at the beginning of string
+- `suffix` *String* or *Pattern* pattern to require at the end of string
+- `length` *Integer* the length of the data in bytes you're expected to be encoded
+
+### isCanonicalButt64.bufferToButt64(buffer) => string
+
+Converts a buffer ing a base64 encoded string.
+
+alias: `toString`
+
+### isCanonicalButt64.butt64ToBuffer(string) => buffer
+
+Converts a butt64 encoded string into a buffer.
+
+alias: `toBuffer`
 
 ## License
 
 MIT
 
+
+[is-canonical-base64]: https://github.com/dominictarr/is-canonical-base64
+[ssb-uri spec]: https://github.com/ssbc/sips/blob/master/001.md
