@@ -1,4 +1,4 @@
-# is-canonical-butt64
+# butt64
 
 Based on [is-canonical-base64] but modified to generate regular
 expressions for url-safe base64, as described in [ssb-uri spec] :
@@ -9,11 +9,11 @@ expressions for url-safe base64, as described in [ssb-uri spec] :
 ## Example Usage
 
 ```
-const isCanonicalButt64 = require('is-canonical-butt64')
+const Butt64 = require('butt64')
 
-const regex = isCanonicalButt64('ssb:feed/classic/, null, 32)
+const regex = new Butt64('ssb:feed/classic/, null, 32)
 
-regest.test('ssb:feed/classic/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=')
+regex.test('ssb:feed/classic/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=')
 // => true
 ```
 
@@ -21,20 +21,20 @@ regest.test('ssb:feed/classic/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=')
 
 ## API
 
-### isCanonicalButt64(prefix, suffix, length) => RegExp
+### new Butt64(prefix, suffix, length) => RegExp
 
 All arguments are optional
 - `prefix` *String* or *Pattern* to require at the beginning of string
 - `suffix` *String* or *Pattern* pattern to require at the end of string
 - `length` *Integer* the length of the data in bytes you're expected to be encoded
 
-### isCanonicalButt64.bufferToButt64(buffer) => string
+### Butt64.bufferToButt64(buffer) => string
 
 Converts a buffer ing a base64 encoded string.
 
 alias: `toString`
 
-### isCanonicalButt64.butt64ToBuffer(string) => buffer
+### Butt64.butt64ToBuffer(string) => buffer
 
 Converts a butt64 encoded string into a buffer.
 

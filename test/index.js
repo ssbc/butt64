@@ -2,11 +2,11 @@
 
 const tape = require('tape')
 const crypto = require('crypto')
-const isCanonicalBase64 = require('../')
-const { bufferToButt64, butt64ToBuffer } = require('../')
+const Butt64 = require('../')
+const { bufferToButt64, butt64ToBuffer } = Butt64
 
 tape('basic use', t => {
-  const regex = isCanonicalBase64()
+  const regex = new Butt64()
 
   const b = Buffer.alloc(4)
   const b1 = b.slice(1)
@@ -51,9 +51,9 @@ tape('basic use', t => {
 })
 
 tape('opts: length', t => {
-  const regex_4 = isCanonicalBase64(null, null, 4)
-  const regex_3 = isCanonicalBase64(null, null, 3)
-  const regex_2 = isCanonicalBase64(null, null, 2)
+  const regex_4 = new Butt64(null, null, 4)
+  const regex_3 = new Butt64(null, null, 3)
+  const regex_2 = new Butt64(null, null, 2)
 
   const b = Buffer.alloc(4)
   const b1 = b.slice(1)
