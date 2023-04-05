@@ -8,7 +8,7 @@ expressions for url-safe base64, as described in [ssb-uri spec] :
 
 ## Example Usage
 
-```
+```javascript
 const Butt64 = require('butt64')
 
 const regex = new Butt64('ssb:feed/classic/, null, 32)
@@ -21,24 +21,22 @@ regex.test('ssb:feed/classic/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=')
 
 ## API
 
-### new Butt64(prefix, suffix, length) => RegExp
+### `new Butt64(prefix, suffix, length) => RegExp`
 
 All arguments are optional
 - `prefix` *String* or *Pattern* to require at the beginning of string
 - `suffix` *String* or *Pattern* pattern to require at the end of string
 - `length` *Integer* the length of the data in bytes you're expected to be encoded
 
-### Butt64.bufferToButt64(buffer) => string
+### `Butt64.bufferToButt64(buffer) => string`
 
 Converts a buffer ing a base64 encoded string.
 
-alias: `toString`
 
-### Butt64.butt64ToBuffer(string) => buffer
+### `Butt64.butt64ToBuffer(string) => buffer`
 
 Converts a butt64 encoded string into a buffer.
 
-alias: `toBuffer`
 
 ## License
 
