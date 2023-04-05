@@ -1,19 +1,22 @@
 {
-  "name": "is-canonical-base64",
-  "description": "test wether a base64 string will serialize the same after parsing",
+  "name": "butt64",
+  "description": "test wether a butt64 string will serialize the same after parsing",
   "version": "1.1.1",
-  "homepage": "https://github.com/dominictarr/is-canonical-base64",
+  "homepage": "https://github.com/ssbc/butt64",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dominictarr/is-canonical-base64.git"
+    "url": "git://github.com/ssbc/butt64.git"
   },
-  "dependencies": {},
   "devDependencies": {
+    "standard": "^17.0.0",
+    "tap-arc": "^0.3.5",
     "tape": "^4.9.1"
   },
   "scripts": {
-    "test": "set -e; for t in test/*.js; do node $t; done"
+    "test": "npm run test:js && npm run lint",
+    "test:js": "tape test/*.js | tap-arc",
+    "lint": "standard --fix"
   },
-  "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://dominictarr.com)",
+  "author": "Mix Irving <mix@protozoa.nz>",
   "license": "MIT"
 }
