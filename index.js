@@ -4,7 +4,15 @@ const trail4 = '[AEIMQUYcgkosw048]='
 const rx = '(?:' + char + '{4})*(?:' + char + '(?:(?:' + trail2 + ')|(?:' + char + trail4 + ')))?'
 
 module.exports = function isCanonnonicalBase64 (prefix, suffix, length) {
-  if (!Number.isInteger(length)) return new RegExp('^' + (prefix || '') + rx + (suffix || '') + '$')
+  if (!Number.isInteger(length)) {
+    return new RegExp(
+      '^' +
+      (prefix || '') +
+      rx +
+      (suffix || '') +
+      '$'
+    )
+  }
 
   const mod = length % 3
 

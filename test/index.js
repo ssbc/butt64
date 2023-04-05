@@ -2,9 +2,10 @@
 
 const tape = require('tape')
 const crypto = require('crypto')
+const isCannonicalBase64 = require('../')
 
 tape('basic use', t => {
-  const isCannonicalBase64 = require('../')()
+  const regex = isCannonicalBase64()
 
   const b = Buffer.alloc(4)
   const b1 = b.slice(1)
@@ -15,9 +16,9 @@ tape('basic use', t => {
     b.writeUInt32BE(i, 0)
 
     const errors = []
-    if (!isCannonicalBase64.test(b.toString('base64'))) errors.push(b.toString('base64') + ', ' + i + ' is cannonical base64')
-    if (!isCannonicalBase64.test(b1.toString('base64'))) errors.push(b1.toString('base64') + ', ' + i + ' is cannonical base64')
-    if (!isCannonicalBase64.test(b2.toString('base64'))) errors.push(b2.toString('base64') + ', ' + i + ' is cannonical base64')
+    if (!regex.test(b.toString('base64'))) errors.push(b.toString('base64') + ', ' + i + ' is cannonical base64')
+    if (!regex.test(b1.toString('base64'))) errors.push(b1.toString('base64') + ', ' + i + ' is cannonical base64')
+    if (!regex.test(b2.toString('base64'))) errors.push(b2.toString('base64') + ', ' + i + ' is cannonical base64')
 
     if (errors.length) {
       allGood = false
@@ -31,7 +32,7 @@ tape('basic use', t => {
     // if this is the same as it would be pased as, it's cannonical
     const isCannonical = str === Buffer.from(str, 'base64').toString('base64')
 
-    if (isCannonical !== isCannonicalBase64.test(str)) {
+    if (isCannonical !== regex.test(str)) {
       allGood = false
       t.fail('problem with ' + str)
     }
@@ -49,9 +50,9 @@ tape('basic use', t => {
 })
 
 tape('opts: length', t => {
-  const isCannonicalBase64_3 = require('../')('', '', 4)
-  const isCannonicalBase64_2 = require('../')('', '', 3)
-  const isCannonicalBase64_1 = require('../')('', '', 2)
+  const regex_4 = isCannonicalBase64(null, null, 4)
+  const regex_3 = isCannonicalBase64(null, null, 3)
+  const regex_2 = isCannonicalBase64(null, null, 2)
 
   const b = Buffer.alloc(4)
   const b1 = b.slice(1)
@@ -62,9 +63,9 @@ tape('opts: length', t => {
     b.writeUInt32BE(i, 0)
 
     const errors = []
-    if (!isCannonicalBase64_3.test(b.toString('base64'))) errors.push(b.toString('base64') + ', ' + i + ' is cannonical 4 byte base64')
-    if (!isCannonicalBase64_2.test(b1.toString('base64'))) errors.push(b1.toString('base64') + ', ' + i + ' is cannonical 3 byte base64')
-    if (!isCannonicalBase64_1.test(b2.toString('base64'))) errors.push(b2.toString('base64') + ', ' + i + ' is cannonical 2 byte base64')
+    if (!regex_4.test(b.toString('base64'))) errors.push(b.toString('base64') + ', ' + i + ' is cannonical 4 byte base64')
+    if (!regex_3.test(b1.toString('base64'))) errors.push(b1.toString('base64') + ', ' + i + ' is cannonical 3 byte base64')
+    if (!regex_2.test(b2.toString('base64'))) errors.push(b2.toString('base64') + ', ' + i + ' is cannonical 2 byte base64')
 
     if (errors.length) {
       allGood = false

@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "npm run test:js && npm run lint",
-    "test:js": "tape test/*.js | tap-arc",
+    "test:js": "tape test/*.js | tap-arc --bail",
     "lint": "standard --fix"
   },
   "author": "Mix Irving <mix@protozoa.nz>",
