@@ -1,7 +1,7 @@
 {
   "name": "butt64",
   "description": "test wether a butt64 string will serialize the same after parsing",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "homepage": "https://github.com/ssbc/butt64",
   "repository": {
     "type": "git",
